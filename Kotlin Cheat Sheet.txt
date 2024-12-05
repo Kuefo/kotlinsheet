@@ -1,0 +1,118 @@
+Below is a concise Kotlin cheat sheet covering the basics, including syntax for variable declaration, control flows, functions, classes, and more. Kotlin is a statically typed programming language that runs on the Java Virtual Machine and can be used for developing Android apps, server-side applications, and much more.
+
+Variables
+val immutableVariable: String = "I cannot be reassigned"
+var mutableVariable: Int = 42
+// Type inference
+val inferredType = "The compiler knows this is a String"
+
+Basic Types
+val myString: String = "Hello, Kotlin!"
+val myInt: Int = 123
+val myDouble: Double = 123.45
+val myBoolean: Boolean = true
+val myLong: Long = 123L
+val myFloat: Float = 123.45F
+val myChar: Char = 'A'
+
+Arrays and Collections
+val myArray = arrayOf(1, 2, 3)
+val myList = listOf("a", "b", "c") // Immutable list
+val myMutableList = mutableListOf("a", "b", "c") // Mutable list
+val myMap = mapOf("key1" to "value1", "key2" to "value2")
+val myMutableMap = mutableMapOf("key1" to "value1")
+
+Control Flow
+If Expression
+val max = if (a > b) a else b
+
+
+When Expression (Switch Case)
+when (x) {
+    1 -> print("x == 1")
+    2 -> print("x == 2")
+    else -> { // Note the block
+        print("x is neither 1 nor 2")
+    }
+}
+
+For Loop
+for (item in collection) print(item)
+for (i in 1..10) print(i) // Range inclusive
+
+While Loop
+while (x > 0) {
+    x--
+}
+
+do {
+    val y = retrieveData()
+} while (y != null) // Executes at least once
+
+Functions
+fun sum(a: Int, b: Int): Int {
+    return a + b
+}
+
+// Single-expression function
+fun multiply(a: Int, b: Int) = a * b
+
+// Default parameters
+fun greet(name: String, msg: String = "Hello") = println("$msg $name")
+
+// Named arguments
+greet(name = "World", msg = "Hi")
+
+Classes and Objects
+class Person(val firstName: String, val lastName: String) {
+    var age: Int = 0
+
+    fun greet() {
+        println("Hello, my name is $firstName $lastName.")
+    }
+}
+
+val person = Person("John", "Doe")
+person.age = 30
+person.greet()
+
+// Data class (automatically provides equals(), hashCode(), toString(), copy())
+data class User(val name: String, val age: Int)
+
+Null Safety
+var nullableVar: String? = "This can be null"
+nullableVar = null
+
+// Safe call operator
+println(nullableVar?.length)
+
+// Elvis operator
+val len = nullableVar?.length ?: -1
+
+// Non-null assertion operator (!!)
+val nonNullVar = nullableVar!!.length
+
+Extension Functions
+fun String.addExclamation(): String = this + "!"
+
+val excited = "Hello".addExclamation() // "Hello!"
+
+Lambdas and Higher-Order Functions
+val sumLambda: (Int, Int) -> Int = { x, y -> x + y }
+val result = sumLambda(2, 3)  // 5
+
+// Higher-order function
+fun operateOnNumbers(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
+    return operation(a, b)
+}
+
+val sumResult = operateOnNumbers(2, 3, sumLambda)
+
+Coroutines for Asynchronous Programming
+// Basic coroutine launch
+GlobalScope.launch {
+    delay(1000L) // Non-blocking delay for 1 second (only useful in coroutines)
+    println("World!")
+}
+
+println("Hello,")
